@@ -39,7 +39,27 @@ lobster_tidy <- lobster_abundance %>%
 ```
 
 Yay! Now each lobster has its own row. This is tidy format.
+
+Now let's look at this a bunch of ways:
 ```{r}
+
+ggplot(data = lobster_tidy, aes(x = site, y = size_mm)) +
+  geom_jitter(aes(color = site),
+              width = 0.2,
+              alpha = 0.3)
+
+ggplot(data = lobster_tidy, aes(x = site, y = size_mm)) +
+  geom_violin(aes(color = site),
+              alpha = 0.3)
+
+ggplot(data = lobster_tidy, aes(x = size_mm)) +
+  geom_histogram(aes(fill = site)) +
+  facet_wrap(~site, scales = "free")
+
+ggplot(data = lobster_tidy, aes(sample = size_mm)) +
+  geom_qq(size = 0.5) +
+  facet_wrap(~site, scales = "free")
+
 
 ```
 
