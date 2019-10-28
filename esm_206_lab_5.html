@@ -370,7 +370,33 @@ summary {
 </div>
 
 
+<div id="objectives" class="section level2">
+<h2>Objectives:</h2>
+<ul>
+<li>Getting counts for different groups</li>
+<li>Use {lubridate} to parse dates</li>
+<li>Find confidence intervals &amp; do t-tests with t.test()</li>
+<li>Heatmap with geom_tile()</li>
+</ul>
+<pre class="r"><code># Import Lobster Data #
 
+lobster_abundance &lt;- read_csv(here::here(&quot;data&quot;,&quot;lobster_abundance.csv&quot;),
+                              na = &quot;-99999&quot;) %&gt;% 
+  clean_names()</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   DATE = col_character(),
+##   SITE = col_character(),
+##   TRANSECT = col_double(),
+##   REPLICATE = col_character(),
+##   SIZE_MM = col_double(),
+##   LOBSTER_COUNT = col_double()
+## )</code></pre>
+<p>Use the dplyr:: tidyr() function to expand a frequency variable</p>
+<pre class="r"><code>lobster_tidy &lt;- lobster_abundance %&gt;%
+  tidyr::uncount(lobster_count)</code></pre>
+<p>Yay! Now each lobster has its own row. This is tidy format.</p>
+</div>
 
 
 

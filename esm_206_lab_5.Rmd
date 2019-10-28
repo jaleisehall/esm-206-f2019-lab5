@@ -9,3 +9,42 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Objectives:
+
+- Getting counts for different groups
+- Use {lubridate} to parse dates
+- Find confidence intervals & do t-tests with t.test()
+- Heatmap with geom_tile()
+
+```{r, include = FALSE}
+
+library(tidyverse)
+library(here)
+library(janitor)
+
+```
+
+```{r}
+# Import Lobster Data #
+
+lobster_abundance <- read_csv(here::here("data","lobster_abundance.csv"),
+                              na = "-99999") %>% 
+  clean_names()
+```
+
+Use the dplyr:: tidyr() function to expand a frequency variable
+```{r}
+lobster_tidy <- lobster_abundance %>%
+  tidyr::uncount(lobster_count)
+```
+
+Yay! Now each lobster has its own row. This is tidy format.
+```{r}
+
+```
+
+
+
+
+
+
